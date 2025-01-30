@@ -1,0 +1,79 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "error_200" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success: The request was processed successfully."
+          }
+        }
+      }
+    },
+    "error_204" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 204: No content available for this resource."
+          }
+        }
+      }
+    },
+    "error_400" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 400: Bad request. Invalid parameters."
+          }
+        }
+      }
+    },
+    "error_401" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 401: Unauthorized. Check your credentials."
+          }
+        }
+      }
+    },
+    "error_403" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 403: Forbidden. You do not have permission."
+          }
+        }
+      }
+    },
+    "error_404" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 404: Could be 'Url not found' or does not hold content."
+          }
+        }
+      }
+    },
+    "error_500" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error 500: Internal server error. Try again later."
+          }
+        }
+      }
+    },
+    "Hello, world!" : {
+
+    }
+  },
+  "version" : "1.0"
+}
