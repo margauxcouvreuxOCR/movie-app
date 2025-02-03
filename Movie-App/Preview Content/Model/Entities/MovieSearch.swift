@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Search : Codable {
+struct MovieSearch : Codable {
     let title: String // ex: "Inception"
     let year: String // ex: 2010"
     let imdbID: String // ex: "tt1375666"
@@ -25,7 +25,7 @@ struct Search : Codable {
 }
 
 struct SearchResponse : Codable {
-    let results: [Search] // dynamic table of searches
+    let results: [MovieSearch] // dynamic table of searches
     let totalResults: String // ex: "38"
     let response: String // "True"
     
@@ -40,9 +40,9 @@ struct SearchResponse : Codable {
 /* - - - - - - - - - - M O C K - - - - - - - - - - */
 
 // Mocked data for Search
-extension Search {
-    static func generateMock() -> Search {
-        return Search(
+extension MovieSearch {
+    static func generateMock() -> MovieSearch {
+        return MovieSearch(
             title: "Inception",
             year: "2010",
             imdbID: "tt1375666",
@@ -51,7 +51,7 @@ extension Search {
         )
     }
     
-    static func generateTabOfSearchMocks(numberOfMocks: Int) -> [Search] {
+    static func generateTabOfSearchMocks(numberOfMocks: Int) -> [MovieSearch] {
         return Array(repeating: .generateMock(), count: numberOfMocks)
     }
 }
@@ -60,7 +60,7 @@ extension Search {
 extension SearchResponse {
     static func generateMock() -> SearchResponse {
         return SearchResponse(
-            results: Search.generateTabOfSearchMocks(numberOfMocks: 5),
+            results: MovieSearch.generateTabOfSearchMocks(numberOfMocks: 5),
             totalResults: "5",
             response: "True"
         )

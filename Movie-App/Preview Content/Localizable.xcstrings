@@ -77,6 +77,26 @@
           }
         }
       }
+    },
+    "search_query" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a movie title…"
+          }
+        }
+      }
+    },
+    "search_title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Movie"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
