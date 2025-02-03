@@ -8,10 +8,10 @@
 import Foundation
 
 // Bridge class makes communication possible between View and Model
-class Bridge {
+class BridgeViewModel {
     
-    static let shared = Bridge() //Singleton for Bridge
+    static let shared = BridgeViewModel() // Singleton for Bridge
     
-    let callAPI = APICalls() //Instance of Api caller
+    let callAPI = APICalls() // Instance of Api caller
     
 }

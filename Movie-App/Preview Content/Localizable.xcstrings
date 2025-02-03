@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "error_200" : {
+      "comment" : "Sytem error for HTTP status code 200",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -12,6 +13,7 @@
       }
     },
     "error_204" : {
+      "comment" : "Sytem error for HTTP status code 204",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -22,6 +24,7 @@
       }
     },
     "error_400" : {
+      "comment" : "System error for HTTP status code 400",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -32,6 +35,7 @@
       }
     },
     "error_401" : {
+      "comment" : "System error for HTTP status code 401",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -42,6 +46,7 @@
       }
     },
     "error_403" : {
+      "comment" : "System error for HTTP status code 403",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -52,6 +57,7 @@
       }
     },
     "error_404" : {
+      "comment" : "System error for HTTP status code 404",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -62,6 +68,7 @@
       }
     },
     "error_500" : {
+      "comment" : "System error for HTTP status code 500",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -70,9 +77,6 @@
           }
         }
       }
-    },
-    "Hello, world!" : {
-
     }
   },
   "version" : "1.0"
