@@ -83,7 +83,7 @@ extension SearchView {
             }
 
             Task {
-                let searchResponse = await APICalls.shared.fetchSearch(for: searchQuery)
+                let searchResponse = await bridgeViewModel.getSearch(searchQuery: searchQuery)
 
                 DispatchQueue.main.async {
                     if let error = searchResponse.error {

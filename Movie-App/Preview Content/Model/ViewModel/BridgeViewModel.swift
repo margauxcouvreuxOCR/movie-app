@@ -60,6 +60,10 @@ class BridgeViewModel {
         return await callAPI.fetchMovie(for: imdbID)
     }
     
+    func getSearch(searchQuery: String) async -> SearchResponse {
+        return await callAPI.fetchSearch(for: searchQuery)
+    }
+    
     /* - - - - - - - - - - A R R A Y S - - - - - - - - - - */
     
     // Stores allMovieSearches fetched from the API
