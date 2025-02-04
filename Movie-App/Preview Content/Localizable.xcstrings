@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "detail_director" : {
+      "comment" : "Information in DetailView",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Director"
+          }
+        }
+      }
+    },
     "error_200" : {
       "comment" : "Sytem error for HTTP status code 200",
       "localizations" : {
@@ -91,7 +103,7 @@
       }
     },
     "search_query" : {
-      "comment" : "Instructions",
+      "comment" : "Instruction",
       "localizations" : {
         "en" : {
           "stringUnit" : {

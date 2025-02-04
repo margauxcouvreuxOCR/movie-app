@@ -26,6 +26,7 @@ struct SearchView: View {
 
                 
                 // Liste des résultats
+                
                 List(viewModel.movieSearchResults, id: \.imdbID) { movie in
                     HStack {
                         
@@ -66,10 +67,9 @@ extension SearchView {
         private var bridgeViewModel: BridgeViewModel
         
         init() {
-            print("\n- - - - -\nTURNING ON : Search Movie \n- - - - -\n")
+            print("\n- - - - -\nVIEW ON : Search Movie \n- - - - -\n")
             self.bridgeViewModel = BridgeViewModel()
             self.bridgeViewModel.movieSearchDelegate = self
-//            loadMockData() // Activer pour tester sans API
         }
         
         func fetchMovieQueryResults(searchQuery: String) {
@@ -108,10 +108,6 @@ extension SearchView {
             }
         }
 
-//        func loadMockData() {
-//            let mockResponse = SearchResponse.generateMock()
-//            movieSearchResults = mockResponse.results
-//        }
     }
 }
 
