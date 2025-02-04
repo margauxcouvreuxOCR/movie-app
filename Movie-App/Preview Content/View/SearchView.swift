@@ -11,60 +11,56 @@ struct SearchView: View {
     @ObservedObject var viewModel = ViewModel() // ViewModel instance
     
     var body: some View {
-        ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .opacity(0.5)
-            .ignoresSafeArea()
-            
-            NavigationStack {
-                VStack {
-                    TextField("search_query", text: $viewModel.searchQuery)
-                        .textFieldStyle(RoundedBorderTextFieldStyle()) // Style du champ de recherche
-                        .padding()
-                    
-                    // Affichage du message d'erreur si présent
-                    if let errorMessage = viewModel.errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
+
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .opacity(0.1)
+                .ignoresSafeArea()
+                
+                NavigationStack {
+                    VStack {
+                        TextField("search_query", text: $viewModel.searchQuery)
+                            .textFieldStyle(RoundedBorderTextFieldStyle()) // Style du champ de recherche
                             .padding()
-                    }
-                    
-                    
-                    // Liste des résultats
-                    
-                    List(viewModel.movieSearchResults, id: \.imdbID) { movie in
-                        NavigationLink(destination: DetailView(imdbID: movie.imdbID)) {
-                            HStack {
-                                
-                                AsyncImage(url: URL(string: movie.poster != "N/A" ? movie.poster : "https://via.placeholder.com/50x75")) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 50, height: 75)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                                
-                                
-                                VStack(alignment: .leading) {
-                                    Text(movie.title)
-                                        .font(.headline)
-                                    Text(movie.year)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                        
+                        // Affichage du message d'erreur si présent
+                        if let errorMessage = viewModel.errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .padding()
                         }
                         
-                    }
-                }
-                .navigationTitle("search_title")
+
+                        List(viewModel.movieSearchResults, id: \.imdbID) { movie in
+                            NavigationLink(destination: DetailView(imdbID: movie.imdbID)) {
+                                HStack {
+                                    AsyncImage(url: URL(string: movie.poster != "N/A" ? movie.poster : "https://via.placeholder.com/50x75")) { image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 50, height: 75)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text(movie.title)
+                                            .font(.headline)
+                                        Text(movie.year)
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                            }
+                        } // list
+                    } //navstack
+                    .navigationTitle("search_title")
+
             }
-            
-            
         }
     }
 }

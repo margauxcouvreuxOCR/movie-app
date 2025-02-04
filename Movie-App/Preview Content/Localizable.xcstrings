@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " (%@)" : {
+
+    },
     "detail_director" : {
       "comment" : "Information in DetailView",
       "extractionState" : "manual",
@@ -127,6 +130,9 @@
         }
       }
     },
+    "Favorites" : {
+
+    },
     "Movie App" : {
       "localizations" : {
         "en" : {
@@ -136,6 +142,9 @@
           }
         }
       }
+    },
+    "Search" : {
+
     },
     "search_query" : {
       "comment" : "Instruction",
@@ -158,6 +167,9 @@
           }
         }
       }
+    },
+    "Watchlist" : {
+
     }
   },
   "version" : "1.0"

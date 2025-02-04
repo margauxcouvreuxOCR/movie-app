@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DetailView: View {
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var favorites = ListStorage.shared
+    @ObservedObject var watchlist = ListStorage.shared
     let imdbID: String
     
     init(imdbID: String) {
@@ -53,7 +55,18 @@ struct DetailView: View {
                     Text(movie.title)
                         .font(.title)
                         .foregroundStyle(Color("DarkerGrey"))
+                    
+                    HStack(spacing: 2) {
+                        let ratingValue = Double(movie.imdbRating) ?? 0.0
+                        let starCount = Int(ratingValue / 2) // Convertir la note sur 10 en étoiles sur 5
 
+                        ForEach(0..<5) { index in
+                            Image(systemName: index < starCount ? "star.fill" : "star")
+                                .foregroundColor(Color("DarkerGrey"))
+                                .font(.caption)
+                        }
+                        Text(" (\(movie.imdbRating))").font(.caption)
+                    }
 
                     Text(movie.plot)
 
@@ -62,17 +75,53 @@ struct DetailView: View {
                         .foregroundStyle(Color("DarkerGrey"))
 
                     Text(movie.director)
+                    
+                    
+                    HStack(spacing: 20){ //icones fav et watchlist
+                        // Bouton pour ajouter/retirer des favoris
+                        Button(action: {
+                            if favorites.contains(movie, in: favorites.favoriteMovies) {
+                                favorites.remove(movie, from: &favorites.favoriteMovies)
+                            } else {
+                                favorites.add(movie, to: &favorites.favoriteMovies)
+                            }
+                        }) {
+                            // Si le film est dans les favoris, on affiche un cœur rempli, sinon un cœur vide
+                            Image(systemName: favorites.contains(movie, in: favorites.favoriteMovies) ? "heart.fill" : "heart")
+                        }
+                        
+                        // Bouton pour ajouter/retirer de la watchlist
+                        Button(action: {
+                            if watchlist.contains(movie, in: watchlist.watchlistMovies) {
+                                watchlist.remove(movie, from: &watchlist.watchlistMovies)
+                            } else {
+                                watchlist.add(movie, to: &watchlist.watchlistMovies)
+                            }
+                        }) {
+                            // Si le film est dans la watchlist, on affiche un œil rempli, sinon un œil vide
+                            Image(systemName: watchlist.contains(movie, in: watchlist.watchlistMovies) ? "eye.fill" : "eye")
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(Color("DarkerGrey"))
+                    .font(.largeTitle)
+                    .padding(10)
                 }
                 .padding()
+                
             } else {
                 Text("error_loading")
                     .foregroundColor(.red)
             }
         }
+                
         .padding()
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+            
+           
+            
         }
     }
 }
@@ -104,6 +153,3 @@ extension DetailView {
 
 
 
-#Preview {
-    DetailView(imdbID: "tt0455275")
-}

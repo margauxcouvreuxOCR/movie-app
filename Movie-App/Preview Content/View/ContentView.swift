@@ -11,8 +11,41 @@ struct ContentView: View {
     init() {
         greetingMessage()
     }
+    
+    @ObservedObject var store = ListStorage.shared
+    
     var body: some View {
-        SearchView()
+        TabView {
+            NavigationStack {
+                SearchView()
+            }
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
+        
+            // Vue des favoris
+            NavigationStack {
+                MovieListView(movies: store.favoriteMovies)
+                .navigationTitle("Favorites")
+            }
+            .tabItem {
+                Image(systemName: "heart")
+                Text("Favorites")
+            }
+            
+            // Vue de la watchlist
+            NavigationStack {
+                MovieListView(movies: store.watchlistMovies)
+                .navigationTitle("Watchlist")
+            }
+            .tabItem {
+                Image(systemName: "eye")
+                Text("Watchlist")
+            }
+        } .accentColor(Color("DarkerGrey"))
+        
+
     }
 }
 
