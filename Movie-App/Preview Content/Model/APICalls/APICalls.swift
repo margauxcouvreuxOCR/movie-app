@@ -24,21 +24,22 @@ class APICalls {
     /* - - - - - - - - - - M O V I E _ S E A R C H - - - - - - - - - - */
     
     // Fetch searches for the query in search bar
-    func fetchSearch(for movieQuery: String) async -> [MovieSearch] {
+    func fetchSearch(for movieQuery: String) async -> SearchResponse {
         let url = buildUrl(for: movieQuery)
         print("APICALLS_fetchSearch: URL = \(url)")
-        
-        let request = buildRequest(for : url)
-        
+
+        let request = buildRequest(for: url)
+
         do {
-            if let movieSearches: [MovieSearch] = await fetchData(for: request) {
-                return movieSearches
+            if let searchResponse: SearchResponse = await fetchData(for: request) {
+                return searchResponse
             } else {
                 print("APICALLS_fetchSearch: No Movie Searches")
-                return []
+                return SearchResponse(search: nil, error: "Unknown error", response: "False")
             }
         }
     }
+
     
 
     
@@ -66,21 +67,23 @@ class APICalls {
     
     
     // Fetch and decode data from URLRequest
-    func fetchData<T: Decodable>(for request: URLRequest) async -> [T]? {
+    func fetchData<T: Decodable>(for request: URLRequest) async -> T? {
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)  // Perform request
-            data.printJson()  // Print response data for debugging
+            let (data, response) = try await URLSession.shared.data(for: request)
+            data.printJson()  // Debugging
+
             if let error = errorHandler.handleRequestError(response: response) {
-                print("HTTP Error: \(error.localizedDescription)")
-                return []  // Return empty array on error
+                print("APICALLS_fetchData: HTTP Error: \(error.localizedDescription)")
+                return nil  // Retourne nil en cas d'erreur
             }
-            
-            let decoder = JSONDecoder()  // Initialize JSON decoder
-            decoder.keyDecodingStrategy = .convertFromSnakeCase  // Convert snake_case to camelCase
-            return try decoder.decode([T].self, from: data)  // Decode and return data
+
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode(T.self, from: data)  // Décode en type générique
         } catch {
-            print("Decoding error: \(error.localizedDescription)")
-            return []  // Return empty array on failure
+            print("APICALLS_fetchData: Decoding error: \(error.localizedDescription)")
+            return nil
         }
     }
+
 }

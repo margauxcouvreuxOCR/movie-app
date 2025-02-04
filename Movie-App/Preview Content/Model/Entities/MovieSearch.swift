@@ -24,17 +24,18 @@ struct MovieSearch : Codable {
 
 }
 
-struct SearchResponse : Codable {
-    let results: [MovieSearch] // dynamic table of searches
-    let totalResults: String // ex: "38"
-    let response: String // "True"
+struct SearchResponse: Decodable {
+    let search: [MovieSearch]?
+    let error: String?
+    let response: String
     
     enum CodingKeys: String, CodingKey {
-        case results = "Search"
-        case totalResults
+        case search = "Search"
+        case error = "Error"
         case response = "Response"
     }
 }
+
 
 
 /* - - - - - - - - - - M O C K - - - - - - - - - - */
@@ -60,10 +61,11 @@ extension MovieSearch {
 extension SearchResponse {
     static func generateMock() -> SearchResponse {
         return SearchResponse(
-            results: MovieSearch.generateTabOfSearchMocks(numberOfMocks: 5),
-            totalResults: "5",
+            search: MovieSearch.generateTabOfSearchMocks(numberOfMocks: 5),
+            error: nil,
             response: "True"
         )
     }
+
 }
 

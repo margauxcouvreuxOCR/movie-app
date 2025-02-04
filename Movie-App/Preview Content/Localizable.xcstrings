@@ -78,7 +78,20 @@
         }
       }
     },
+    "error_unknown" : {
+      "comment" : "System error for displaying request with unknown issue",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred."
+          }
+        }
+      }
+    },
     "search_query" : {
+      "comment" : "Instructions",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -89,6 +102,7 @@
       }
     },
     "search_title" : {
+      "comment" : "Navigation",
       "localizations" : {
         "en" : {
           "stringUnit" : {
