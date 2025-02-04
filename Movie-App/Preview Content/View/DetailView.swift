@@ -8,51 +8,83 @@
 import SwiftUI
 
 struct DetailView: View {
-    @ObservedObject var viewModel = ViewModel() // ViewModel instance
-    var currentMovie: Movie = Movie.generateMock()
+    @ObservedObject var viewModel: ViewModel
+    let imdbID: String
+    
+    init(imdbID: String) {
+        self.imdbID = imdbID
+        self.viewModel = ViewModel(imdbID: imdbID)
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) { // Aligne tout le contenu à gauche
-            Text(currentMovie.title)
-                .bold()
-                .font(.largeTitle)
+        VStack {
+            if viewModel.isLoading {
+                ProgressView("detail_loading") // 🔹 Affiche un indicateur de chargement
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .font(.title)
+            } else if let movie = viewModel.currentMovie {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(movie.title)
+                        .bold()
+                        .font(.largeTitle)
 
-            AsyncImage(url: URL(string: currentMovie.poster)) { image in
-                image.resizable() // Redimensionner l'image
-                    .scaledToFill() // Remplir l'espace sans conserver les proportions
-                    .frame(maxWidth: .infinity) // L'image prend toute la largeur
-                    .clipped() // Empêche que l'image dépasse
-                    .cornerRadius(10) // Coins arrondis
-            } placeholder: {
-                ProgressView() // Affiche une barre de progression pendant le chargement de l'image
+                    AsyncImage(url: URL(string: movie.poster)) { image in
+                        image.resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .clipped()
+                            .cornerRadius(10)
+                    } placeholder: {
+                        ProgressView() // 🔹 Affiche un placeholder pendant le chargement de l'image
+                    }
+
+                    Text(movie.title)
+                        .font(.title)
+
+                    Text(movie.plot)
+
+                    Text("detail_director")
+                        .bold()
+
+                    Text(movie.director)
+                }
+                .padding()
+            } else {
+                Text("error_loading")
+                    .foregroundColor(.red)
             }
-            
-            Text(currentMovie.title)
-                .font(.title)
-
-            Text(currentMovie.plot)
-            
-            Text("detail_director")
-                .bold()
-            
-            Text(currentMovie.director)
         }
-        .padding() // Un peu de marge autour du contenu
+        .padding()
     }
 }
+
 
 
 extension DetailView {
     class ViewModel: ObservableObject {
+        @Published var currentMovie: Movie? = nil // Commence vide
+        @Published var isLoading = true // Indique si le chargement est en cours
         
-        private var bridgeViewModel: BridgeViewModel
-        init() {
+        init(imdbID: String) {
             print("\n- - - - -\nVIEW ON : Detail Movie \n- - - - -\n")
-            self.bridgeViewModel = BridgeViewModel()
+            fetchMovie(imdbID: imdbID)
+        }
+        
+        func fetchMovie(imdbID: String) {
+            Task {
+                let movieResponse = await BridgeViewModel().getCurrentMovie(imdbID: imdbID)
+                
+                DispatchQueue.main.async {
+                    self.currentMovie = movieResponse
+                    self.isLoading = false // Fin du chargement
+                }
+            }
         }
     }
 }
 
+
+
 #Preview {
-    DetailView()
+    DetailView(imdbID: "tt0455275")
 }

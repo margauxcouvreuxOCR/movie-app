@@ -28,25 +28,28 @@ struct SearchView: View {
                 // Liste des résultats
                 
                 List(viewModel.movieSearchResults, id: \.imdbID) { movie in
-                    HStack {
-                        
-                        AsyncImage(url: URL(string: movie.poster != "N/A" ? movie.poster : "https://via.placeholder.com/50x75")) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 50, height: 75)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                    NavigationLink(destination: DetailView(imdbID: movie.imdbID)) {
+                        HStack {
+                            
+                            AsyncImage(url: URL(string: movie.poster != "N/A" ? movie.poster : "https://via.placeholder.com/50x75")) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 50, height: 75)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
 
 
-                        VStack(alignment: .leading) {
-                            Text(movie.title)
-                                .font(.headline)
-                            Text(movie.year)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                            VStack(alignment: .leading) {
+                                Text(movie.title)
+                                    .font(.headline)
+                                Text(movie.year)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
                         }
                     }
+                    
                 }
             }
             .navigationTitle("search_title")

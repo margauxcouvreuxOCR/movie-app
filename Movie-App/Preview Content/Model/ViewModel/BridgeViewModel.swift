@@ -32,17 +32,39 @@ class BridgeViewModel {
         }
     }
     
-    /* - - - - - - - - - - S E T T E R S - - - - - - - - - - */
+    // Dynamic property to store the vehicle ID.
+    @Published private var movieId: String = "" {
+        didSet {
+            // Log the changes to `vehicleId` for debugging purposes.
+            print("Update : vehicleId changed from \(String(describing: oldValue)) to \(String(describing: movieId))")
+        }
+    }
+    
+    /* - - - - - - - - - - S E T T E R S _ G E T T E R S - - - - - - - - - - */
     
     // Updates the `movieQuery` value.
     func setMovieQuery(_ movieQuery: String) {
         self.movieQuery = movieQuery
     }
     
+    // Updates the `vehicleId` value.
+    func setMovieId(_ imdbID: String) {
+        self.movieId = imdbID
+    }
+    
+    func getMovieId() -> String {
+        return movieId
+    }
+    
+    func getCurrentMovie(imdbID: String) async -> Movie {
+        return await callAPI.fetchMovie(for: imdbID)
+    }
+    
     /* - - - - - - - - - - A R R A Y S - - - - - - - - - - */
     
     // Stores allMovieSearches fetched from the API
     @Published var allMovieSearches: [MovieSearch] = []
+
     
 }
 
