@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "detail_director" : {
       "comment" : "Information in DetailView",
       "extractionState" : "manual",
@@ -14,7 +17,15 @@
       }
     },
     "detail_loading" : {
-
+      "comment" : "System info",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading your selection…"
+          }
+        }
+      }
     },
     "error_200" : {
       "comment" : "Sytem error for HTTP status code 200",
@@ -94,7 +105,15 @@
       }
     },
     "error_loading" : {
-
+      "comment" : "System error for loading",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error has occurred while loading…"
+          }
+        }
+      }
     },
     "error_unknown" : {
       "comment" : "System error for displaying request with unknown issue",
@@ -104,6 +123,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "An unknown error occurred."
+          }
+        }
+      }
+    },
+    "Movie App" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movie App"
           }
         }
       }

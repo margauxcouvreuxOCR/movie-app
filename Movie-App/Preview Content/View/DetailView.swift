@@ -17,6 +17,17 @@ struct DetailView: View {
     }
 
     var body: some View {
+        
+        ZStack {
+            LinearGradient(
+                gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .opacity(0.1)
+            .ignoresSafeArea()
+            ScrollView {
+
         VStack {
             if viewModel.isLoading {
                 ProgressView("detail_loading") // 🔹 Affiche un indicateur de chargement
@@ -25,9 +36,10 @@ struct DetailView: View {
             } else if let movie = viewModel.currentMovie {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(movie.title)
-                        .bold()
                         .font(.largeTitle)
+                        .bold()
 
+                    
                     AsyncImage(url: URL(string: movie.poster)) { image in
                         image.resizable()
                             .scaledToFill()
@@ -40,11 +52,14 @@ struct DetailView: View {
 
                     Text(movie.title)
                         .font(.title)
+                        .foregroundStyle(Color("DarkerGrey"))
+
 
                     Text(movie.plot)
 
                     Text("detail_director")
                         .bold()
+                        .foregroundStyle(Color("DarkerGrey"))
 
                     Text(movie.director)
                 }
@@ -55,6 +70,10 @@ struct DetailView: View {
             }
         }
         .padding()
+        }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
