@@ -47,11 +47,13 @@ class APICalls {
     
     // Build URL from route string
     func buildUrl(for movieTitle: String) -> URL {
-        guard let url = URL(string: baseURL + searchURL + movieTitle + apiKeyURL) else {
-            fatalError("APICALLS_buildUrl: Invalid URL: \(baseURL + searchURL + movieTitle + apiKeyURL)")  // Terminate if URL is invalid
+        guard let encodedTitle = movieTitle.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: baseURL + searchURL + encodedTitle + apiKeyURL) else {
+            fatalError("APICALLS_buildUrl: Invalid URL after encoding: \(baseURL + searchURL + movieTitle + apiKeyURL)")
         }
-        return url  // Return valid URL
+        return url
     }
+
     
     
     // Build URLRequest for the given URL while authenticated to the app
