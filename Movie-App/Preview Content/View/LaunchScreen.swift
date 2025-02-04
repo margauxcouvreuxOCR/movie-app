@@ -32,7 +32,7 @@ struct LaunchScreen: View {
                     }
                     
 
-                Text("Movie App")
+                Text("title_app")
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .bold()

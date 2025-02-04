@@ -21,27 +21,27 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
-                Text("Search")
+                Text("title_search")
             }
         
             // Vue des favoris
             NavigationStack {
                 MovieListView(movies: store.favoriteMovies)
-                .navigationTitle("Favorites")
+                .navigationTitle("title_favorites")
             }
             .tabItem {
                 Image(systemName: "heart")
-                Text("Favorites")
+                Text("title_favorites")
             }
             
             // Vue de la watchlist
             NavigationStack {
                 MovieListView(movies: store.watchlistMovies)
-                .navigationTitle("Watchlist")
+                .navigationTitle("title_watchlist")
             }
             .tabItem {
                 Image(systemName: "eye")
-                Text("Watchlist")
+                Text("title_watchlist")
             }
         } .accentColor(Color("DarkerGrey"))
         

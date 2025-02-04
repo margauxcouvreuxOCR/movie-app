@@ -2,10 +2,37 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     " (%@)" : {
-
+      "comment" : "System",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        }
+      }
     },
     "detail_director" : {
       "comment" : "Information in DetailView",
@@ -16,16 +43,28 @@
             "state" : "translated",
             "value" : "Director"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Directeur"
+          }
         }
       }
     },
     "detail_loading" : {
-      "comment" : "System info",
+      "comment" : "Loading in DetailView",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading your selection…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement de votre sélection…"
           }
         }
       }
@@ -38,6 +77,12 @@
             "state" : "translated",
             "value" : "Success: The request was processed successfully."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Succès : la demande a été traitée avec succès."
+          }
         }
       }
     },
@@ -48,6 +93,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error 204: No content available for this resource."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 204 : Aucun contenu disponible pour cette ressource."
           }
         }
       }
@@ -60,6 +111,12 @@
             "state" : "translated",
             "value" : "Error 400: Bad request. Invalid parameters."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 400 : Mauvaise demande. Paramètres invalides."
+          }
         }
       }
     },
@@ -70,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error 401: Unauthorized. Check your credentials."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 401 : Non autorisé. Vérifiez vos références."
           }
         }
       }
@@ -82,6 +145,12 @@
             "state" : "translated",
             "value" : "Error 403: Forbidden. You do not have permission."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 403 : Interdit. Vous n'avez pas la permission."
+          }
         }
       }
     },
@@ -92,6 +161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error 404: Could be 'Url not found' or does not hold content."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 404 : Pourrait être \"Url non trouvée\" ou ne contient pas de contenu."
           }
         }
       }
@@ -104,6 +179,12 @@
             "state" : "translated",
             "value" : "Error 500: Internal server error. Try again later."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur 500 : Erreur interne du serveur. Réessayez plus tard."
+          }
         }
       }
     },
@@ -114,6 +195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "An error has occurred while loading…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur s'est produite lors du chargement..."
           }
         }
       }
@@ -127,13 +214,17 @@
             "state" : "translated",
             "value" : "An unknown error occurred."
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur inconnue s'est produite."
+          }
         }
       }
     },
-    "Favorites" : {
-
-    },
     "Movie App" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -143,9 +234,6 @@
         }
       }
     },
-    "Search" : {
-
-    },
     "search_query" : {
       "comment" : "Instruction",
       "localizations" : {
@@ -153,6 +241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter a movie title…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrez un titre de film..."
           }
         }
       }
@@ -165,11 +259,82 @@
             "state" : "translated",
             "value" : "Search Movie"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher un film"
+          }
         }
       }
     },
-    "Watchlist" : {
-
+    "title_app" : {
+      "comment" : "Title for the app",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movie App"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movie App"
+          }
+        }
+      }
+    },
+    "title_favorites" : {
+      "comment" : "Title for the favorite section",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorits"
+          }
+        }
+      }
+    },
+    "title_search" : {
+      "comment" : "Title for the search section",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherche"
+          }
+        }
+      }
+    },
+    "title_watchlist" : {
+      "comment" : "Title for the watchlist section",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watchlist"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watchlist"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
