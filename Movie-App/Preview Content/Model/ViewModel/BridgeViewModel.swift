@@ -13,7 +13,7 @@ class BridgeViewModel {
     // Singleton instance to ensure a single shared object across the app.
     static let shared = BridgeViewModel()
     
-    weak var movieSearchDelegate: MovieSearchDelegate? { // Delegate to notify when the roadmap is updated
+    weak var movieSearchDelegate: MovieSearchDelegate? { // Delegate to notify when allMovieSearches is updated
         didSet {
             movieSearchDelegate?.didUpdateSearch(with: allMovieSearches) // Notify delegate of initial state
         }
@@ -52,14 +52,17 @@ class BridgeViewModel {
         self.movieId = imdbID
     }
     
+    // Obtain a movie Id
     func getMovieId() -> String {
         return movieId
     }
     
+    // Obtain the current movie from Api calls using its id
     func getCurrentMovie(imdbID: String) async -> Movie {
         return await callAPI.fetchMovie(for: imdbID)
     }
     
+    // Obtain the search response from Api calls using its query
     func getSearch(searchQuery: String) async -> SearchResponse {
         return await callAPI.fetchSearch(for: searchQuery)
     }
@@ -72,7 +75,7 @@ class BridgeViewModel {
     
 }
 
-// Protocol for roadmap updates
+// Protocol for search results updates
 protocol MovieSearchDelegate: AnyObject {
-    func didUpdateSearch(with allMovieSearches: [MovieSearch]) // Called when the roadmap (list of places) is updated
+    func didUpdateSearch(with allMovieSearches: [MovieSearch]) // Called when the allMovieSearches (list of movieSeazrches) is updated
 }

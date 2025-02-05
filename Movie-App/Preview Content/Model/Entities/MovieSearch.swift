@@ -25,9 +25,9 @@ struct MovieSearch : Codable {
 }
 
 struct SearchResponse: Decodable {
-    let search: [MovieSearch]?
-    let error: String?
-    let response: String
+    let search: [MovieSearch]? // ex: [ Movie1, Movie2, ...]
+    let error: String? // ex: "Too many results."
+    let response: String // ex: "True"
     
     enum CodingKeys: String, CodingKey {
         case search = "Search"
@@ -52,6 +52,7 @@ extension MovieSearch {
         )
     }
     
+    // a table of mocked searches
     static func generateTabOfSearchMocks(numberOfMocks: Int) -> [MovieSearch] {
         return Array(repeating: .generateMock(), count: numberOfMocks)
     }

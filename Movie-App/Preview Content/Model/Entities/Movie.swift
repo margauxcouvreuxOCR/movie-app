@@ -88,7 +88,8 @@ extension Movie {
             ratings: [Rating.mock]
         )
     }
-    
+
+    // a table of mocked movies
     static func generateTabOfMovieMocks(numberOfMocks: Int) -> [Movie] {
         return Array(repeating: .generateMock(), count: numberOfMocks)
     }

@@ -15,7 +15,11 @@ struct ContentView: View {
     @ObservedObject var store = ListStorage.shared
     
     var body: some View {
+        
+        // Bottom nav tab
         TabView {
+            
+            // Go to Search Movie section
             NavigationStack {
                 SearchView()
             }
@@ -24,7 +28,7 @@ struct ContentView: View {
                 Text("title_search")
             }
         
-            // Vue des favoris
+            // Got to Favorites section
             NavigationStack {
                 MovieListView(movies: store.favoriteMovies)
                 .navigationTitle("title_favorites")
@@ -34,7 +38,7 @@ struct ContentView: View {
                 Text("title_favorites")
             }
             
-            // Vue de la watchlist
+            // Go to Watchlist section
             NavigationStack {
                 MovieListView(movies: store.watchlistMovies)
                 .navigationTitle("title_watchlist")

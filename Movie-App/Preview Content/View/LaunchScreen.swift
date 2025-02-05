@@ -12,6 +12,8 @@ struct LaunchScreen: View {
     
     var body: some View {
         ZStack {
+            
+            // Gradient color for background
             LinearGradient(
                 gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
                 startPoint: .top,
@@ -20,7 +22,9 @@ struct LaunchScreen: View {
             .ignoresSafeArea()
             
             VStack {
-                Image("Movie_app") // Ton logo ou image de lancement
+                
+                // Animated logo
+                Image("Movie_app")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
@@ -31,7 +35,7 @@ struct LaunchScreen: View {
                         isAnimating = true // Start the animation when the view appears
                     }
                     
-
+                // App title
                 Text("title_app")
                     .font(.largeTitle)
                     .foregroundColor(.white)

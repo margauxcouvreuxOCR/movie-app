@@ -19,8 +19,8 @@ class APICalls {
     // Instances and route storage
     let errorHandler = HTTPErrorHandler() // instance of obj HttpErreorHandler
     let baseURL = "https://www.omdbapi.com" // the base url for OMDb api
-    let searchURL = "/?s="
-    let movieURL = "/?i="
+    let searchURL = "/?s=" // parameter for search title
+    let movieURL = "/?i=" // parameter for movie id
     let apiKeyURL = "&apikey=fc07f088" // the api key for OMDb api
     
     /* - - - - - - - - - - M O V I E _ S E A R C H - - - - - - - - - - */
@@ -44,6 +44,7 @@ class APICalls {
 
     /* - - - - - - - - - - M O V I E _ D E T A I L - - - - - - - - - - */
 
+    // FetchMovie makes api calls to fetch one movie by its id
     func fetchMovie(for movieId: String) async -> Movie {
         let url = buildUrl(for: movieId, isSearch: false)
         print("APICALLS_fetchMovie: URL = \(url)")
@@ -67,25 +68,23 @@ class APICalls {
         let urlString: String
 
         if isSearch {
-            // Si on fait une recherche par titre (paramètre 's')
+            // If the search is by title ('s')
             guard let encodedTitle = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                 fatalError("APICALLS_buildUrl: Invalid search query encoding")
             }
             urlString = baseURL + searchURL + encodedTitle + apiKeyURL
         } else {
-            // Si on fait une recherche par ID (paramètre 'i')
+            // If the search if by id ('i')
             urlString = baseURL + movieURL + query + apiKeyURL
         }
 
         guard let url = URL(string: urlString) else {
             fatalError("APICALLS_buildUrl: Invalid URL after encoding: \(urlString)")
         }
-
         return url
     }
 
 
-    
     
     // Build URLRequest for the given URL while authenticated to the app
     func buildRequest(for url: URL, authenticated : Bool = true) -> URLRequest {
@@ -107,12 +106,12 @@ class APICalls {
 
             if let error = errorHandler.handleRequestError(response: response) {
                 print("APICALLS_fetchData: HTTP Error: \(error.localizedDescription)")
-                return nil  // Retourne nil en cas d'erreur
+                return nil  // In case of error returns nil
             }
 
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(T.self, from: data)  // Décode en type générique
+            return try decoder.decode(T.self, from: data)  // Decodes into a generic type
         } catch {
             print("APICALLS_fetchData: Decoding error: \(error.localizedDescription)")
             return nil

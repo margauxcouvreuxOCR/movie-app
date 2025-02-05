@@ -239,58 +239,6 @@
         }
       }
     },
-    "Movie App" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Movie App"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Movie App"
-          }
-        }
-      }
-    },
-    "Search a movie" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search movie…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rechercher un film…"
-          }
-        }
-      }
-    },
-    "search_query" : {
-      "comment" : "Instruction",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter a movie title…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entrez un titre de film..."
-          }
-        }
-      }
-    },
     "search_title" : {
       "comment" : "Navigation",
       "localizations" : {

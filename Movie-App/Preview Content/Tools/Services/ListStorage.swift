@@ -9,18 +9,21 @@ import Foundation
 
 class ListStorage: ObservableObject {
     
+    // List of locally stored favorite movies
     @Published var favoriteMovies: [Movie] = [] {
         didSet {
             saveList(favoriteMovies, forKey: favoritesKey)
         }
     }
     
+    // List of locally stored movies to watch
     @Published var watchlistMovies: [Movie] = [] {
         didSet {
             saveList(watchlistMovies, forKey: watchlistKey)
         }
     }
     
+    // Key used to store and retrieve the lists of favorite/watchlist movies in UserDefaults
     private let favoritesKey: String
     private let watchlistKey: String
 
@@ -30,31 +33,31 @@ class ListStorage: ObservableObject {
         self.loadLists()
     }
     
-    // Ajouter un film à une liste
+    // Add a movie to a list
     func add(_ movie: Movie, to list: inout [Movie]) {
         if !list.contains(where: { $0.imdbID == movie.imdbID }) {
             list.append(movie)
         }
     }
     
-    // Retirer un film d'une liste
+    // Remove a movie from a list
     func remove(_ movie: Movie, from list: inout [Movie]) {
         list.removeAll { $0.imdbID == movie.imdbID }
     }
     
-    // Vérifier si un film est dans une liste
+    // Check if a movie is already in a list
     func contains(_ movie: Movie, in list: [Movie]) -> Bool {
         return list.contains(where: { $0.imdbID == movie.imdbID })
     }
     
-    // Sauvegarder une liste
+    // Save a list
     private func saveList(_ list: [Movie], forKey key: String) {
         if let encoded = try? JSONEncoder().encode(list) {
             UserDefaults.standard.set(encoded, forKey: key)
         }
     }
     
-    // Charger les listes
+    // Load a list of movies
     private func loadLists() {
         if let favoritesData = UserDefaults.standard.data(forKey: favoritesKey),
            let decodedFavorites = try? JSONDecoder().decode([Movie].self, from: favoritesData) {
