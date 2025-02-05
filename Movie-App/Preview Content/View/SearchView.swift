@@ -11,64 +11,40 @@ struct SearchView: View {
     @ObservedObject var viewModel = ViewModel() // ViewModel instance
     
     var body: some View {
-
-            ZStack {
-                LinearGradient(
-                    gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .opacity(0.1)
-                .ignoresSafeArea()
                 
-                NavigationStack {
-                    VStack {
-                        TextField("search_query", text: $viewModel.searchQuery)
-                            .textFieldStyle(RoundedBorderTextFieldStyle()) // Style du champ de recherche
-                            .padding()
-                        
-                        // Affichage du message d'erreur si présent
-                        if let errorMessage = viewModel.errorMessage {
-                            Text(errorMessage)
-                                .foregroundColor(.red)
-                                .padding()
-                        }
-                        
+        HStack {
+        }
+        .searchable(text: $viewModel.searchQuery) // Une seule barre de recherche ici
+        .navigationTitle("search_title")
 
-                        List(viewModel.movieSearchResults, id: \.imdbID) { movie in
-                            NavigationLink(destination: DetailView(imdbID: movie.imdbID)) {
-                                HStack {
-                                    AsyncImage(url: URL(string: movie.poster != "N/A" ? movie.poster : "https://via.placeholder.com/50x75")) { image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        ProgressView()
-                                    }
-                                    .frame(width: 50, height: 75)
-                                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                                    
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(movie.title)
-                                            .font(.headline)
-                                        Text(movie.year)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                            }
-                        } // list
-                    } //navstack
-                    .navigationTitle("search_title")
+        VStack {
+            if viewModel.searchQuery.isEmpty && viewModel.movieSearchResults.isEmpty {
+                MovieClapper()
+                Text("error_empty")
+                    .foregroundColor(Color("DarkerGrey"))
+                    .font(.headline)
 
+            } else if viewModel.movieSearchResults.isEmpty {
+                if let errorMessage = viewModel.errorMessage {
+                    MovieClapper()
+                    Text(errorMessage)
+                        .foregroundColor(Color("DarkerGrey"))
+                        .font(.headline)
+
+                }
+            } else {
+                SearchListView(searches: viewModel.movieSearchResults)
             }
         }
+        
+        
     }
 }
 
 extension SearchView {
     class ViewModel: ObservableObject, MovieSearchDelegate {
         @Published var errorMessage: String? = nil
-        @Published var movieSearchResults: [MovieSearch] = [] // Initialisation correcte
+        @Published var movieSearchResults: [MovieSearch] = []
         @Published var searchQuery: String = "" {
             didSet {
                 fetchMovieQueryResults(searchQuery: searchQuery)
@@ -95,15 +71,12 @@ extension SearchView {
                 
                 DispatchQueue.main.async {
                     if let error = searchResponse.error {
-                        // Si l'API renvoie une erreur
                         self.errorMessage = error
                         self.movieSearchResults = []
                     } else if let results = searchResponse.search {
-                        // Si l'API renvoie des résultats valides
                         self.movieSearchResults = results
                         self.errorMessage = nil
                     } else {
-                        // Cas inconnu
                         self.errorMessage = "error_unknown"
                         self.movieSearchResults = []
                     }
@@ -111,14 +84,11 @@ extension SearchView {
             }
         }
         
-        
-        // Delegate method: mise à jour des résultats
         func didUpdateSearch(with movieSearchResults: [MovieSearch]) {
             DispatchQueue.main.async {
                 self.movieSearchResults = movieSearchResults
             }
         }
-        
     }
 }
 

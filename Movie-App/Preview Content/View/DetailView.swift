@@ -76,7 +76,6 @@ struct DetailView: View {
 
                     Text(movie.director)
                     
-                    
                     HStack(spacing: 20){ //icones fav et watchlist
                         // Bouton pour ajouter/retirer des favoris
                         Button(action: {
