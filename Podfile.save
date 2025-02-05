@@ -1,0 +1,22 @@
+platform :ios, '13.0'
+
+target 'Movie-App' do
+  use_frameworks!
+  pod 'Firebase/Auth'
+end
+platform :ios, '13.0'
+
+target 'Movie-App' do
+  use_frameworks!
+  pod 'Firebase/Auth'
+en
+:q^Xxx:xX# Uncomment the next line to define a global platform for your project
+platform :ios, '12.0'
+
+target 'Movie-App' do
+  use_frameworks!
+
+  pod 'Firebase/Core', '~> 11.8.1'
+  pod 'Firebase/Firestore', '~> 5.0.0'
+  # Ajoute d'autres pods nécessaires
+end

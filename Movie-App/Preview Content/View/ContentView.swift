@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     init() {
@@ -13,43 +14,45 @@ struct ContentView: View {
     }
     
     @ObservedObject var store = ListStorage.shared
-    
-    var body: some View {
-        
-        // Bottom nav tab
-        TabView {
-            
-            // Go to Search Movie section
-            NavigationStack {
-                SearchView()
-            }
-            .tabItem {
-                Image(systemName: "magnifyingglass")
-                Text("title_search")
-            }
-        
-            // Got to Favorites section
-            NavigationStack {
-                MovieListView(movies: store.favoriteMovies)
-                .navigationTitle("title_favorites")
-            }
-            .tabItem {
-                Image(systemName: "heart")
-                Text("title_favorites")
-            }
-            
-            // Go to Watchlist section
-            NavigationStack {
-                MovieListView(movies: store.watchlistMovies)
-                .navigationTitle("title_watchlist")
-            }
-            .tabItem {
-                Image(systemName: "eye")
-                Text("title_watchlist")
-            }
-        } .accentColor(Color("DarkerGrey"))
-        
+    @State private var isUserLoggedIn = Auth.auth().currentUser != nil
 
+    var body: some View {
+        Group {
+            if isUserLoggedIn {
+                // Affiche l'application si l'utilisateur est connecté
+                TabView {
+                    NavigationStack {
+                        SearchView()
+                    }
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("title_search")
+                    }
+                
+                    NavigationStack {
+                        MovieListView(movies: store.favoriteMovies)
+                        .navigationTitle("title_favorites")
+                    }
+                    .tabItem {
+                        Image(systemName: "heart")
+                        Text("title_favorites")
+                    }
+                    
+                    NavigationStack {
+                        MovieListView(movies: store.watchlistMovies)
+                        .navigationTitle("title_watchlist")
+                    }
+                    .tabItem {
+                        Image(systemName: "eye")
+                        Text("title_watchlist")
+                    }
+                }
+                .accentColor(Color("DarkerGrey"))
+            } else {
+                // Affiche la vue de connexion si l'utilisateur n'est pas connecté
+                LoginView(isUserLoggedIn: $isUserLoggedIn)
+            }
+        }
     }
 }
 
