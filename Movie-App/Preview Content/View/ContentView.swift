@@ -46,12 +46,31 @@ struct ContentView: View {
                         Image(systemName: "eye")
                         Text("title_watchlist")
                     }
+
+                    // Onglet de déconnexion
+                    NavigationStack {
+                        LogoutView(isUserLoggedIn: $isUserLoggedIn)
+                    }
+                    .tabItem {
+                        Image(systemName: "power")
+                        Text("Déconnexion")
+                    }
                 }
                 .accentColor(Color("DarkerGrey"))
             } else {
                 // Affiche la vue de connexion si l'utilisateur n'est pas connecté
                 LoginView(isUserLoggedIn: $isUserLoggedIn)
             }
+        }
+    }
+    
+    // Fonction de déconnexion
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            isUserLoggedIn = false
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
     }
 }

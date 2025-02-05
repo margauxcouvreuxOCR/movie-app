@@ -34,6 +34,9 @@
         }
       }
     },
+    "Déconnexion" : {
+
+    },
     "detail_director" : {
       "comment" : "Information in DetailView",
       "extractionState" : "manual",
@@ -254,6 +257,9 @@
     "Se connecter" : {
 
     },
+    "Se déconnecter" : {
+
+    },
     "search_title" : {
       "comment" : "Navigation",
       "localizations" : {
@@ -338,6 +344,9 @@
           }
         }
       }
+    },
+    "Voulez-vous vraiment vous déconnecter ?" : {
+
     }
   },
   "version" : "1.0"

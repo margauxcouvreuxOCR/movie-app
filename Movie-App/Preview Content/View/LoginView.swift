@@ -17,6 +17,20 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
+            
+            // Animated logo
+            Image("Movie_app")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .cornerRadius(50)
+                
+            // App title
+            Text("title_app")
+                .font(.largeTitle)
+                .foregroundColor(Color("DarkerGrey"))
+                .bold()
+            
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
