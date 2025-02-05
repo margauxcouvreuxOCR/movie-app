@@ -52,6 +52,9 @@ struct MovieListView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
+            .onAppear() {
+                print("\n- - - - -\nVIEW ON : List of Movies \n- - - - -\n")
+            }
         }
     }
 }
@@ -61,6 +64,7 @@ struct SearchListView: View {
     var searches: [MovieSearch] // List of search results
     
     var body: some View {
+        
         // Displays the list of movies in a table of searches
         List(searches, id: \.imdbID) { movie in
             

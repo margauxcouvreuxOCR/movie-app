@@ -135,7 +135,10 @@ struct DetailView: View {
                             .foregroundColor(.red)
                     }
                 }
-                
+                .onAppear() {
+                    print("\n- - - - -\nVIEW ON : Detail Movie \n- - - - -\n")
+                    print("Movie id: \(imdbID)")
+                }
                 .padding()
             }
             .navigationTitle("") // No nav title, movie title is displayed instead
@@ -153,7 +156,6 @@ extension DetailView {
         @Published var isLoading = true // Says if the page is loading or not
         
         init(imdbID: String) {
-            print("\n- - - - -\nVIEW ON : Detail Movie \n- - - - -\n")
             fetchMovie(imdbID: imdbID)
         }
         

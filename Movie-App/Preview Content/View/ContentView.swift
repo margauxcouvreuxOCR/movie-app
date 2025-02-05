@@ -53,9 +53,8 @@ struct ContentView: View {
     }
 }
 
-// Private function to print a welcome message to the console when the ContentView appears
+// Shows a welcome message in console when ContentView appears
 private func greetingMessage() {
-    // Print a welcome message to the console with formatting
     print("\n= = = = = \nWELCOME : MOVIE_APP\n= = = = =\n")
 }
 
