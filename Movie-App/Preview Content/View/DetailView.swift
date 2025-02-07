@@ -9,12 +9,10 @@ import SwiftUI
 
 struct DetailView: View {
     
-    
     @ObservedObject var viewModel: ViewModel // View model for the view logic
     @ObservedObject var favorites = ListStorage.shared // Shared instance for favorite movies
     @ObservedObject var watchlist = ListStorage.shared // Shared instance for watchlist movies
     let imdbID: String // IMDb ID for movie detail
-    
     
     init(imdbID: String) {
         self.imdbID = imdbID
@@ -22,9 +20,7 @@ struct DetailView: View {
     }
     
     var body: some View {
-        
         ZStack {
-            
             // Gradient color for background
             LinearGradient(
                 gradient: Gradient(colors: [Color("LightGrey"), Color("DarkGrey")]),
@@ -34,20 +30,15 @@ struct DetailView: View {
             .opacity(0.1)
             .ignoresSafeArea()
             
-            
-            // Scrollview of the detailed view
             ScrollView {
                 VStack {
-                    
                     if viewModel.isLoading {
-                        
                         // Displays a progression status while loading
                         ProgressView("detail_loading")
                             .progressViewStyle(CircularProgressViewStyle())
                             .font(.title)
                         
                     } else if let movie = viewModel.currentMovie {
-                        
                         VStack(alignment: .leading, spacing: 10) {
                             
                             // Movie title, big format
@@ -63,7 +54,7 @@ struct DetailView: View {
                                     .clipped()
                                     .cornerRadius(10)
                             } placeholder: {
-                                ProgressView() // 🔹 Affiche un placeholder pendant le chargement de l'image
+                                ProgressView() // Placeholder while loading image
                             }
                             
                             // Movie title, smaller
@@ -74,7 +65,7 @@ struct DetailView: View {
                             // Rating displayed using star format
                             HStack(spacing: 2) {
                                 let ratingValue = Double(movie.imdbRating) ?? 0.0
-                                let starCount = Int(ratingValue / 2) // Convertir la note sur 10 en étoiles sur 5
+                                let starCount = Int(ratingValue / 2) // Convert rating (out of 10) to stars (out of 5)
                                 
                                 ForEach(0..<5) { index in
                                     Image(systemName: index < starCount ? "star.fill" : "star")
@@ -96,7 +87,7 @@ struct DetailView: View {
                             Text(movie.director)
                             
                             // Buttons to add the movie to a list of favorites or watchlist
-                            HStack(spacing: 20){
+                            HStack(spacing: 20) {
                                 
                                 // Button to add/remove from Favorites
                                 Button(action: {
@@ -130,12 +121,12 @@ struct DetailView: View {
                         .padding()
                         
                     } else {
-                        // If error occurs, displays a message instead of the movie
+                        // If an error occurs, displays a message instead of the movie
                         Text("error_loading")
                             .foregroundColor(.red)
                     }
                 }
-                .onAppear() {
+                .onAppear {
                     print("\n- - - - -\nVIEW ON : Detail Movie \n- - - - -\n")
                     print("Movie id: \(imdbID)")
                 }
@@ -143,17 +134,28 @@ struct DetailView: View {
             }
             .navigationTitle("") // No nav title, movie title is displayed instead
             .navigationBarTitleDisplayMode(.inline) // Stops the content from drowning the top bar
-            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if let movie = viewModel.currentMovie {
+                        ShareLink(
+                            item: "\(movie.poster)\n\(NSLocalizedString("share_movie", comment: ""))\n🎬 \(movie.title)",
+                            preview: SharePreview(movie.title, image: Image("Movie_app")) // Logo de l’app en preview
+                        ) {
+                            Label("title_share", systemImage: "square.and.arrow.up")
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
 
 
-
 extension DetailView {
     class ViewModel: ObservableObject {
         @Published var currentMovie: Movie? = nil // Starts empty
-        @Published var isLoading = true // Says if the page is loading or not
+        @Published var isLoading = true // Indicates if the page is loading
         
         init(imdbID: String) {
             fetchMovie(imdbID: imdbID)
@@ -161,17 +163,14 @@ extension DetailView {
         
         func fetchMovie(imdbID: String) {
             Task {
-                // Sets the movie response from a call made in BVM usind the movie id
+                // Fetch movie details from API using the movie ID
                 let movieResponse = await BridgeViewModel().getCurrentMovie(imdbID: imdbID)
                 
                 DispatchQueue.main.async {
                     self.currentMovie = movieResponse
-                    self.isLoading = false // Fin du chargement
+                    self.isLoading = false // End of loading
                 }
             }
         }
     }
 }
-
-
-

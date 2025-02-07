@@ -50,6 +50,9 @@ struct LogoutView: View {
         .padding()
     }
 
+}
+
+extension LogoutView {
     // Signout sets the authentication to false to logout
     private func signOut() {
         do {

@@ -13,14 +13,20 @@ struct ContentView: View {
         greetingMessage()
     }
     
+    // Shared storage for favorite and watchlist movies
     @ObservedObject var store = ListStorage.shared
+    
+    // Tracks user authentication status
     @State private var isUserLoggedIn = Auth.auth().currentUser != nil
 
     var body: some View {
         Group {
             if isUserLoggedIn {
-                // Affiche l'application si l'utilisateur est connecté
+                
+                // Displays the main app interface if the user is logged in
                 TabView {
+                    
+                    // Search tab
                     NavigationStack {
                         SearchView()
                     }
@@ -29,25 +35,27 @@ struct ContentView: View {
                         Text("title_search")
                     }
                 
+                    // Favorites tab
                     NavigationStack {
                         MovieListView(movies: store.favoriteMovies)
-                        .navigationTitle("title_favorites")
+                            .navigationTitle("title_favorites")
                     }
                     .tabItem {
                         Image(systemName: "heart")
                         Text("title_favorites")
                     }
                     
+                    // Watchlist tab
                     NavigationStack {
                         MovieListView(movies: store.watchlistMovies)
-                        .navigationTitle("title_watchlist")
+                            .navigationTitle("title_watchlist")
                     }
                     .tabItem {
                         Image(systemName: "eye")
                         Text("title_watchlist")
                     }
 
-                    // Onglet de déconnexion
+                    // Logout tab
                     NavigationStack {
                         LogoutView(isUserLoggedIn: $isUserLoggedIn)
                     }
@@ -58,13 +66,20 @@ struct ContentView: View {
                 }
                 .accentColor(Color("DarkerGrey"))
             } else {
-                // Affiche la vue de connexion si l'utilisateur n'est pas connecté
+                // Shows login view if the user is not logged in
                 LoginView(isUserLoggedIn: $isUserLoggedIn)
             }
         }
     }
+}
+
+extension ContentView {
+    // Prints a welcome message when ContentView appears
+    private func greetingMessage() {
+        print("\n= = = = = \nWELCOME : MOVIE_APP\n= = = = =\n")
+    }
     
-    // Fonction de déconnexion
+    // Logs out the user
     private func signOut() {
         do {
             try Auth.auth().signOut()
@@ -73,11 +88,6 @@ struct ContentView: View {
             print("Error signing out: %@", signOutError)
         }
     }
-}
-
-// Shows a welcome message in console when ContentView appears
-private func greetingMessage() {
-    print("\n= = = = = \nWELCOME : MOVIE_APP\n= = = = =\n")
 }
 
 #Preview {

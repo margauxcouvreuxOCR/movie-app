@@ -90,6 +90,12 @@ struct LoginView: View {
         }
     }
     
+    
+    
+}
+
+extension LoginView {
+    // Signout sets the authentication to true to login
     private func loginUser() {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
@@ -102,5 +108,4 @@ struct LoginView: View {
             }
         }
     }
-    
 }
