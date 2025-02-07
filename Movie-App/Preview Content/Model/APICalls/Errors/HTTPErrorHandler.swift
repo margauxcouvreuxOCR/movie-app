@@ -19,7 +19,7 @@ class HTTPErrorHandler {
     // Function to create an NSError based on the status code
     func createError(forStatusCode code: Int) -> NSError {
         let message = message(forStatusCode: code)
-        return NSError(domain: "PlaceFetcherAPI", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+        return NSError(domain: "APICalls", code: code, userInfo: [NSLocalizedDescriptionKey: message])
     }
 
     // Function to handle HTTP request errors
@@ -35,13 +35,13 @@ class HTTPErrorHandler {
     // It creates an NSError based on the decoding error description.
     func handleDecodingError(error: Error) -> NSError {
         let message = "Decoding error: \(error.localizedDescription)"
-        return NSError(domain: "PlaceFetcherAPI", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
+        return NSError(domain: "APICalls", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
     }
 
     // Function to handle general errors (other than request or decoding errors)
     // It creates an NSError based on the error description.
     func handleGeneralError(error: Error) -> NSError {
         let message = "General error: \(error.localizedDescription)"
-        return NSError(domain: "PlaceFetcherAPI", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
+        return NSError(domain: "APICalls", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }

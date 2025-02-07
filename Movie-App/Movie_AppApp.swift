@@ -26,7 +26,7 @@ struct Movie_AppApp: App {
     var body: some Scene {
         WindowGroup {
             if isActive {
-                ContentView() // Affiche l'app après 2 secondes
+                ContentView() // Displays the app after 2 secs
             } else {
                 LaunchScreen()
                     .onAppear {

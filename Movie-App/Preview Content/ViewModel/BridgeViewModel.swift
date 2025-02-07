@@ -32,10 +32,10 @@ class BridgeViewModel {
         }
     }
     
-    // Dynamic property to store the vehicle ID.
+    // Dynamic property to store the movie ID.
     @Published private var movieId: String = "" {
         didSet {
-            // Log the changes to `vehicleId` for debugging purposes.
+            // Log the changes to `movieId` for debugging purposes.
             print("Update : movieId changed from \(String(describing: oldValue)) to \(String(describing: movieId))")
         }
     }
@@ -47,7 +47,7 @@ class BridgeViewModel {
         self.movieQuery = movieQuery
     }
     
-    // Updates the `vehicleId` value.
+    // Updates the `movieId` value.
     func setMovieId(_ imdbID: String) {
         self.movieId = imdbID
     }
