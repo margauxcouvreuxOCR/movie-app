@@ -53,7 +53,7 @@ struct ContentView: View {
                     }
                     .tabItem {
                         Image(systemName: "power")
-                        Text("Déconnexion")
+                        Text("title_logout")
                     }
                 }
                 .accentColor(Color("DarkerGrey"))

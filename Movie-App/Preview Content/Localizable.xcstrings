@@ -34,8 +34,85 @@
         }
       }
     },
-    "Déconnexion" : {
-
+    "connexion_login" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log In"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se connecter"
+          }
+        }
+      }
+    },
+    "connexion_result" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warning !"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attention !"
+          }
+        }
+      }
+    },
+    "deconnexion_alert" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You will need to log in again to return to the app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il faudra vous reconnecter pour accéder de nouveau à l’application."
+          }
+        }
+      }
+    },
+    "deconnexion_logout" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se Déconnecter"
+          }
+        }
+      }
+    },
+    "deconnexion_question" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log out ?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se déconnecter ?"
+          }
+        }
+      }
     },
     "detail_director" : {
       "comment" : "Information in DetailView",
@@ -71,9 +148,6 @@
           }
         }
       }
-    },
-    "Email" : {
-
     },
     "error_200" : {
       "comment" : "Sytem error for HTTP status code 200",
@@ -195,6 +269,7 @@
       }
     },
     "error_empty" : {
+      "comment" : "Information",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -245,20 +320,53 @@
         }
       }
     },
+    "label_email" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-mail"
+          }
+        }
+      }
+    },
+    "label_password" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mot de Passe"
+          }
+        }
+      }
+    },
     "OK" : {
-
-    },
-    "Password" : {
-
-    },
-    "Résultat" : {
-
-    },
-    "Se connecter" : {
-
-    },
-    "Se déconnecter" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "search_title" : {
       "comment" : "Navigation",
@@ -273,6 +381,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher un film"
+          }
+        }
+      }
+    },
+    "text_email" : {
+      "comment" : "Instruction for login",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your email address…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrez votre adresse email…"
+          }
+        }
+      }
+    },
+    "text_password" : {
+      "comment" : "Instruction for login",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your password…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrez votre mot de passe…"
           }
         }
       }
@@ -311,6 +453,23 @@
         }
       }
     },
+    "title_logout" : {
+      "comment" : "Title for the deconnexion sections",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnexion"
+          }
+        }
+      }
+    },
     "title_search" : {
       "comment" : "Title for the search section",
       "localizations" : {
@@ -344,9 +503,6 @@
           }
         }
       }
-    },
-    "Voulez-vous vraiment vous déconnecter ?" : {
-
     }
   },
   "version" : "1.0"

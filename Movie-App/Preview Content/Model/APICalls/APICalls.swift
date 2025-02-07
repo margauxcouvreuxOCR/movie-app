@@ -16,6 +16,7 @@ class APICalls {
     // ex: movie = https:\//www.omdbapi.com/?i=imdbID&apikey=fc07f088
     
     /* - - - - - - - - - - V A R I A B L E S - - - - - - - - - - */
+    
     // Instances and route storage
     let errorHandler = HTTPErrorHandler() // instance of obj HttpErreorHandler
     let baseURL = "https://www.omdbapi.com" // the base url for OMDb api
@@ -86,14 +87,9 @@ class APICalls {
 
 
     
-    // Build URLRequest for the given URL while authenticated to the app
-    func buildRequest(for url: URL, authenticated : Bool = true) -> URLRequest {
+    // Build URLRequest for the given URL
+    func buildRequest(for url: URL) -> URLRequest {
         let request = URLRequest(url: url)
-//        if authenticated {
-//            let token = "Token \(DynamicsHandler.shared.loginToken)"
-//            print("Api call : buildRequest(for : \(url) | Token value : \(token)")
-//            request.addValue(token, forHTTPHeaderField: "Authorization")  // Add authorization header
-//        }
         return request  // Return request
     }
     

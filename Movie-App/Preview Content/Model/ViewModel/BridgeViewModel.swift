@@ -28,7 +28,7 @@ class BridgeViewModel {
     @Published private var movieQuery: String = "" {
         didSet {
             // Log the changes to `movieQuery` for debugging purposes.
-            print("BVM_Update : territorySlug changed from \(oldValue) to \(movieQuery)")
+            print("BVM_Update : movieQuery changed from \(oldValue) to \(movieQuery)")
         }
     }
     
@@ -36,7 +36,7 @@ class BridgeViewModel {
     @Published private var movieId: String = "" {
         didSet {
             // Log the changes to `vehicleId` for debugging purposes.
-            print("Update : vehicleId changed from \(String(describing: oldValue)) to \(String(describing: movieId))")
+            print("Update : movieId changed from \(String(describing: oldValue)) to \(String(describing: movieId))")
         }
     }
     
